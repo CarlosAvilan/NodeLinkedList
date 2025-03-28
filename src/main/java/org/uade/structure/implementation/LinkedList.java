@@ -97,7 +97,7 @@ public class LinkedList implements LinkedListADT {
         return result.toString();
     }
 
-    // Nested static class for LinkedListElement
+
     private static class LinkedListElement {
         private int value;
         private LinkedListElement next;
