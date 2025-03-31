@@ -11,7 +11,7 @@ public class Stack implements StackADT {
 
     public int getElement() {
         if (!isEmpty()) {
-            return top.value;
+            return top.getValue();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -28,7 +28,7 @@ public class Stack implements StackADT {
 
     public void remove() {
         if (!isEmpty()) {
-            top = top.previous;
+            top = top.getPrevious();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -39,8 +39,8 @@ public class Stack implements StackADT {
     }
 
     private static class Node {
-        int value;
-        Node previous;
+        private int value;
+        private Node previous;
 
         public Node(int value) {
             this.value = value;
@@ -50,6 +50,14 @@ public class Stack implements StackADT {
         public Node(int value, Node previous) {
             this.value = value;
             this.previous = previous;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
         }
 
         public Node getPrevious() {
@@ -67,8 +75,8 @@ public class Stack implements StackADT {
 
         Node current = top;
         while (current != null) {
-            sb.append(current.value).append("\n");
-            current = current.previous;
+            sb.append(current.getValue()).append("\n");
+            current = current.getPrevious();
         }
 
         return sb.toString();
