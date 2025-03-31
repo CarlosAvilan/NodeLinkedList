@@ -4,6 +4,9 @@ package org;
 //import org.uade.structure.implementation.LinkedList;//
 
 import org.uade.structure.implementation.Stack;
+import org.uade.util.StackUtil;
+
+import static org.uade.util.StackUtil.copy;
 
 
 public class Main {
@@ -17,6 +20,9 @@ public class Main {
         stack.add(4);
         stack.add(12);
         System.out.println(stack);
+
+        Stack copia = StackUtil.copy(stack);
+        System.out.println(copia);
         stack.remove();
         System.out.println(stack);
 
