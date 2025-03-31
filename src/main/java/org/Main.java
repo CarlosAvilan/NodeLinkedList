@@ -1,9 +1,27 @@
 package org;
 
-import org.uade.structure.implementation.LinkedList;
+
+//import org.uade.structure.implementation.LinkedList;//
+
+import org.uade.structure.implementation.Stack;
+
 
 public class Main {
     public static void main(String[] args) {
+
+        Stack stack = new Stack();
+        System.out.println(stack.isEmpty());
+
+        stack.add(7);
+        System.out.println(stack.getElement());
+        stack.add(4);
+        stack.add(12);
+        System.out.println(stack);
+        stack.remove();
+        System.out.println(stack);
+
+
+        /*
         LinkedList list = new LinkedList();
         System.out.println(list.isEmpty());
         System.out.println(list.size());
@@ -27,5 +45,6 @@ public class Main {
 
         System.out.println(list.size());
         System.out.println(list.isEmpty());
+        */
         }
     }
