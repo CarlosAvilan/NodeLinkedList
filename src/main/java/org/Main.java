@@ -3,6 +3,7 @@ package org;
 
 //import org.uade.structure.implementation.LinkedList;//
 
+import org.uade.structure.definition.StackADT;
 import org.uade.structure.implementation.Stack;
 import org.uade.util.StackUtil;
 
@@ -19,12 +20,12 @@ public class Main {
         System.out.println(stack.getElement());
         stack.add(4);
         stack.add(12);
-        System.out.println(stack);
+        StackUtil.print(stack);
 
-        Stack copia = StackUtil.copy(stack);
-        System.out.println(copia);
+        StackADT copia = StackUtil.copy(stack);
+        StackUtil.print(copia);
         stack.remove();
-        System.out.println(stack);
+        StackUtil.print(stack);
 
 
         /*

@@ -68,17 +68,4 @@ public class Stack implements StackADT {
             this.previous = previous;
         }
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        Node current = top;
-        while (current != null) {
-            sb.append(current.getValue()).append("\n");
-            current = current.getPrevious();
-        }
-
-        return sb.toString();
-    }
 }
