@@ -1,6 +1,7 @@
 package org.uade.util;
 import org.uade.structure.definition.StackADT;
 import org.uade.structure.implementation.Stack;
+import org.uade.structure.exception.EmptyADTException;
 
 public class StackUtil {
     public static StackADT copy(StackADT stack) {
@@ -20,8 +21,13 @@ public class StackUtil {
         return newStack;
     }
 
-    //might need a try/catch in case I try to print an empty one
+
     public static void print(StackADT stack) {
+        if (stack.isEmpty()) {
+            System.out.println("La pila está vacía");
+            return;
+        }
+
         StackADT myStack = copy(stack);
         while (!myStack.isEmpty()) {
             System.out.println(myStack.getElement());

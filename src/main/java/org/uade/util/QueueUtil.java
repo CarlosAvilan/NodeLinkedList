@@ -2,6 +2,7 @@ package org.uade.util;
 
 import org.uade.structure.definition.QueueADT;
 import org.uade.structure.implementation.Queue;
+import org.uade.structure.exception.EmptyADTException;
 
 public class QueueUtil {
     public static QueueADT copy(QueueADT queue) {
@@ -21,7 +22,13 @@ public class QueueUtil {
         return newQueue;
     }
 
+
     public static void print(QueueADT queue) {
+        if (queue.isEmpty()) {
+            System.out.println("La cola está vacía");
+            return;
+        }
+
         QueueADT myQueue = copy(queue);
         while (!myQueue.isEmpty()) {
             System.out.println(myQueue.getElement());

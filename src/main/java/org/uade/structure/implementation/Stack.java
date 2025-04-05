@@ -1,6 +1,7 @@
 package org.uade.structure.implementation;
 
 import org.uade.structure.definition.StackADT;
+import org.uade.structure.exception.EmptyADTException;
 
 public class Stack implements StackADT {
     private Node top;
@@ -13,7 +14,7 @@ public class Stack implements StackADT {
         if (!isEmpty()) {
             return top.getValue();
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyADTException("La pila está vacía");
         }
     }
 
@@ -30,7 +31,7 @@ public class Stack implements StackADT {
         if (!isEmpty()) {
             top = top.getPrevious();
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyADTException("La pila está vacía");
         }
     }
 

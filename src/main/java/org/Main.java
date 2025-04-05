@@ -4,18 +4,19 @@ import org.uade.structure.definition.QueueADT;
 import org.uade.structure.implementation.Queue;
 import org.uade.util.QueueUtil;
 
-//import org.uade.structure.implementation.LinkedList;//
+import org.uade.structure.definition.LinkedListADT;
+import org.uade.structure.implementation.LinkedList;
+import org.uade.util.LinkedListUtil;
 
 import org.uade.structure.definition.StackADT;
 import org.uade.structure.implementation.Stack;
 import org.uade.util.StackUtil;
 
-import static org.uade.util.StackUtil.copy;
-
 
 public class Main {
     public static void main(String[] args) {
 
+        /*
         QueueADT queue = new Queue();
         System.out.println(queue.isEmpty());
 
@@ -29,9 +30,10 @@ public class Main {
 
         queue.remove();
         QueueUtil.print(queue);
+        */
 
         /*
-        Stack stack = new Stack();
+        StackADT stack = new Stack();
         System.out.println(stack.isEmpty());
 
         stack.add(7);
@@ -47,30 +49,31 @@ public class Main {
         */
 
 
-        /*
-        LinkedList list = new LinkedList();
-        System.out.println(list.isEmpty());
-        System.out.println(list.size());
+
+
+        LinkedListADT list = new LinkedList();
+
+        LinkedListUtil.print(list);
 
         list.add(10);
         list.add(20);
         list.add(34);
         list.add(8);
         list.add(3);
-        System.out.println(list);
+        LinkedListUtil.print(list);
 
         list.insert(3, 15);
-        System.out.println(list);
+        LinkedListUtil.print(list);
 
         System.out.println(list.get(1));
         System.out.println(list.get(3));
         System.out.println(list.get(4));
+        System.out.println("----");
 
         list.remove(1);
-        System.out.println(list);
+        LinkedListUtil.print(list);
 
         System.out.println(list.size());
-        System.out.println(list.isEmpty());
-        */
-        }
+        LinkedListUtil.print(list);
     }
+}

@@ -1,5 +1,6 @@
 package org.uade.structure.implementation;
 
+import org.uade.structure.exception.EmptyADTException;
 import org.uade.structure.definition.QueueADT;
 
 public class Queue implements QueueADT {
@@ -16,7 +17,7 @@ public class Queue implements QueueADT {
         if (!isEmpty()) {
             return first.getValue();
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyADTException("La cola está vacía");
         }
     }
 
@@ -37,7 +38,7 @@ public class Queue implements QueueADT {
         if (!isEmpty()) {
             first = first.getNext();
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyADTException("La cola está vacía");
         }
     }
 

@@ -1,6 +1,7 @@
 package org.uade.structure.implementation;
 
 import org.uade.structure.definition.LinkedListADT;
+import org.uade.structure.exception.EmptyADTException;
 
 public class LinkedList implements LinkedListADT {
     private LinkedListElement first;
@@ -26,7 +27,7 @@ public class LinkedList implements LinkedListADT {
 
     public void insert(int index, int value) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Invalid index");
+            throw new EmptyADTException("Índice inválido");
         }
         if (index == 0) {
             first = new LinkedListElement(value, first);
@@ -45,7 +46,7 @@ public class LinkedList implements LinkedListADT {
 
     public void remove(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Invalid index");
+            throw new EmptyADTException("Índice inválido");
         }
         if (index == 0) {
             first = first.getNext();
@@ -63,7 +64,7 @@ public class LinkedList implements LinkedListADT {
 
     public int get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Invalid index");
+            throw new EmptyADTException("Índice inválido");
         }
         LinkedListElement current = first;
         int i = 0;
@@ -80,21 +81,6 @@ public class LinkedList implements LinkedListADT {
 
     public boolean isEmpty() {
         return size == 0;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder("[");
-        LinkedListElement current = first;
-        while (current != null) {
-            result.append(current.getValue());
-            if (current.getNext() != null) {
-                result.append(", ");
-            }
-            current = current.getNext();
-        }
-        result.append("]");
-        return result.toString();
     }
 
 
