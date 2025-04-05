@@ -1,5 +1,8 @@
 package org;
 
+import org.uade.structure.definition.QueueADT;
+import org.uade.structure.implementation.Queue;
+import org.uade.util.QueueUtil;
 
 //import org.uade.structure.implementation.LinkedList;//
 
@@ -13,6 +16,21 @@ import static org.uade.util.StackUtil.copy;
 public class Main {
     public static void main(String[] args) {
 
+        QueueADT queue = new Queue();
+        System.out.println(queue.isEmpty());
+
+        queue.add(6);
+        System.out.println(queue.getElement());
+        queue.add(3);
+        queue.add(21);
+        queue.add(12);
+
+        QueueUtil.print(queue);
+
+        queue.remove();
+        QueueUtil.print(queue);
+
+        /*
         Stack stack = new Stack();
         System.out.println(stack.isEmpty());
 
@@ -26,6 +44,7 @@ public class Main {
         StackUtil.print(copia);
         stack.remove();
         StackUtil.print(stack);
+        */
 
 
         /*

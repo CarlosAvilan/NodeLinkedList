@@ -13,13 +13,14 @@ public class StackUtil {
         }
         while (!temp.isEmpty()) {
             stack.add(temp.getElement());
-            newStack.add(stack.getElement());
+            newStack.add(temp.getElement());
             temp.remove();
         }
 
         return newStack;
     }
 
+    //might need a try/catch in case I try to print an empty one
     public static void print(StackADT stack) {
         StackADT myStack = copy(stack);
         while (!myStack.isEmpty()) {

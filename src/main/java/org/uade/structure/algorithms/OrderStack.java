@@ -17,19 +17,22 @@ public class OrderStack {
         dada.add(9);
 
         StackUtil.print(dada);
+        System.out.println("---");
         StackUtil.print(orderStack(dada));
+        System.out.println("---");
         StackUtil.print(dada);
     }
 
     public static StackADT orderStack(StackADT stack) {
         StackADT ordered = new Stack();
+        StackADT copyStack = copy(stack);
 
-        while (!stack.isEmpty()) {
-            int temp = stack.getElement();
-            stack.remove();
+        while (!copyStack.isEmpty()) {
+            int temp = copyStack.getElement();
+            copyStack.remove();
 
-            while (!ordered.isEmpty() && (int) ordered.getElement() < temp) {
-                stack.add(ordered.getElement());
+            while (!ordered.isEmpty() && ordered.getElement() < temp) {
+                copyStack.add(ordered.getElement());
                 ordered.remove();
             }
             ordered.add(temp);
