@@ -10,6 +10,13 @@ public class StaticStack implements StackADT {
     private int size;
     private int maxSize;
 
+    public StaticStack() {
+        this.values = new int[100];
+        this.topIndex = -1;
+        this.size = 0;
+        this.maxSize = 100;
+    }
+
     public StaticStack(int maxSize) {
         this.values = new int[maxSize];
         this.topIndex = -1;

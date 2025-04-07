@@ -31,7 +31,7 @@ public class Main {
         */
 
 
-        StackADT stack = new StaticStack(3);
+        StackADT stack = new StaticStack();
         System.out.println(stack.isEmpty());
 
         stack.add(7);

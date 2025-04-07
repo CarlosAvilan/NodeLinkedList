@@ -1,12 +1,13 @@
 package org.uade.util;
 import org.uade.structure.definition.StackADT;
 import org.uade.structure.implementation.Stack;
+import org.uade.structure.implementation.StaticStack;
 import org.uade.structure.exception.EmptyADTException;
 
 public class StackUtil {
     public static StackADT copy(StackADT stack) {
-        StackADT newStack = new Stack();
-        StackADT temp = new Stack();
+        StackADT newStack = getNewStack(stack);
+        StackADT temp = getNewStack(stack);
 
         while (!stack.isEmpty()) {
             temp.add(stack.getElement());
@@ -24,8 +25,7 @@ public class StackUtil {
 
     public static void print(StackADT stack) {
         if (stack.isEmpty()) {
-            System.out.println("La pila está vacía");
-            return;
+            throw new EmptyADTException("La pila está vacía");
         }
 
         StackADT myStack = copy(stack);
@@ -34,4 +34,13 @@ public class StackUtil {
             myStack.remove();
         }
     }
+
+    public static StackADT getNewStack(StackADT stack) {
+        if (stack instanceof Stack) {
+            return new Stack();
+        } else {
+            return new StaticStack();
+        }
+    }
+
 }
