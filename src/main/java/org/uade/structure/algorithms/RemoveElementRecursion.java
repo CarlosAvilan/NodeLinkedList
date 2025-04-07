@@ -1,0 +1,43 @@
+package org.uade.structure.algorithms;
+
+import org.uade.structure.definition.QueueADT;
+import org.uade.structure.definition.StackADT;
+import org.uade.structure.implementation.Queue;
+import org.uade.structure.implementation.Stack;
+import org.uade.util.QueueUtil;
+
+import static org.uade.util.QueueUtil.copy;
+
+public class RemoveElementRecursion {
+
+    public static void main(String[] args) {
+        QueueADT queue = new Queue();
+
+        queue.add(17);
+        queue.add(81);
+        queue.add(29);
+        queue.add(40);
+
+        QueueUtil.print(queue);
+        System.out.println("---");
+        int removeValue = 81;
+        removeElementRecursion(queue, removeValue);
+        QueueUtil.print(queue);
+    }
+
+    public static void removeElementRecursion(QueueADT queue, int value) {
+        if (queue.isEmpty()) {
+            return;
+        }
+
+        int currentValue = queue.getElement();
+        queue.remove();
+
+        removeElementRecursion(queue, value);
+
+        if (currentValue != value) {
+            queue.add(currentValue);
+        }
+    }
+}
+
