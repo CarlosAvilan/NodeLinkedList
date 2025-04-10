@@ -25,7 +25,8 @@ public class StaticLinkedList implements LinkedListADT {
             throw new OverflowADTException("Se alcanzó la capacidad máxima");
         }
 
-        int newIndex = nextSpace++;
+        int newIndex = nextSpace;
+        nextSpace++;
         elements[newIndex] = new LinkedListElement(value, -1);
 
         if (isEmpty()) {
@@ -46,7 +47,8 @@ public class StaticLinkedList implements LinkedListADT {
             throw new OverflowADTException("Índice inválido o capacidad máxima alcanzada");
         }
 
-        int newIndex = nextSpace++;
+        int newIndex = nextSpace;
+        nextSpace++;
         if (index == 0) {
             elements[newIndex] = new LinkedListElement(value, first);
             first = newIndex;
