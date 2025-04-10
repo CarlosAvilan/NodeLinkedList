@@ -50,7 +50,7 @@ public class Main {
 
 
 
-        LinkedListADT list = new LinkedList();
+        LinkedListADT list = new StaticLinkedList();
 
         LinkedListUtil.print(list);
 

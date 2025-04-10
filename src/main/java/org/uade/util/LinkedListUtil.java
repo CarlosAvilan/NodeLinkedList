@@ -2,6 +2,7 @@ package org.uade.util;
 
 import org.uade.structure.definition.LinkedListADT;
 import org.uade.structure.implementation.LinkedList;
+import org.uade.structure.implementation.StaticLinkedList;
 
 public class LinkedListUtil {
 
