@@ -15,7 +15,7 @@ public class Queue implements QueueADT {
 
     public int getElement() {
         if (!isEmpty()) {
-            return first.getValue();
+            return first.value;
         } else {
             throw new EmptyADTException("La cola está vacía");
         }
@@ -36,7 +36,10 @@ public class Queue implements QueueADT {
 
     public void remove() {
         if (!isEmpty()) {
-            first = first.getNext();
+            first = first.next;
+            if (first == null) {
+                last = null;
+            }
         } else {
             throw new EmptyADTException("La cola está vacía");
         }
@@ -54,22 +57,6 @@ public class Queue implements QueueADT {
         public Node(int value) {
             this.value = value;
             this.next = null;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
         }
     }
 }

@@ -30,7 +30,7 @@ public class Main {
         QueueUtil.print(queue);
         */
 
-
+        /*
         StackADT stack = new StaticStack();
         System.out.println(stack.isEmpty());
 
@@ -46,9 +46,10 @@ public class Main {
         StackUtil.print(stack);
         stack.add(1);
         StackUtil.print(stack);
+        */
 
 
-        /*
+
         LinkedListADT list = new LinkedList();
 
         LinkedListUtil.print(list);
@@ -73,6 +74,6 @@ public class Main {
 
         System.out.println(list.size());
         LinkedListUtil.print(list);
-        */
+        
     }
 }

@@ -10,14 +10,16 @@ public class Stack implements StackADT {
         this.top = null;
     }
 
+    @Override
     public int getElement() {
         if (!isEmpty()) {
-            return top.getValue();
+            return top.value;
         } else {
             throw new EmptyADTException("La pila está vacía");
         }
     }
 
+    @Override
     public void add(int value) {
         if (isEmpty()) {
             top = new Node(value);
@@ -27,14 +29,16 @@ public class Stack implements StackADT {
         }
     }
 
+    @Override
     public void remove() {
         if (!isEmpty()) {
-            top = top.getPrevious();
+            top = top.previous;
         } else {
             throw new EmptyADTException("La pila está vacía");
         }
     }
 
+    @Override
     public boolean isEmpty() {
         return top == null;
     }
@@ -50,22 +54,6 @@ public class Stack implements StackADT {
 
         public Node(int value, Node previous) {
             this.value = value;
-            this.previous = previous;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public Node getPrevious() {
-            return previous;
-        }
-
-        public void setPrevious(Node previous) {
             this.previous = previous;
         }
     }

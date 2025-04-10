@@ -17,10 +17,10 @@ public class LinkedList implements LinkedListADT {
             first = new LinkedListElement(value);
         } else {
             LinkedListElement current = first;
-            while (current.getNext() != null) {
-                current = current.getNext();
+            while (current.next != null) {
+                current = current.next;
             }
-            current.setNext(new LinkedListElement(value));
+            current.next = new LinkedListElement(value);
         }
         size++;
     }
@@ -35,11 +35,10 @@ public class LinkedList implements LinkedListADT {
             LinkedListElement current = first;
             int i = 0;
             while (i < index - 1) {
-                current = current.getNext();
+                current = current.next;
                 i++;
             }
-            LinkedListElement newElement = new LinkedListElement(value, current.getNext());
-            current.setNext(newElement);
+            current.next = new LinkedListElement(value, current.next);
         }
         size++;
     }
@@ -49,15 +48,15 @@ public class LinkedList implements LinkedListADT {
             throw new EmptyADTException("Índice inválido");
         }
         if (index == 0) {
-            first = first.getNext();
+            first = first.next;
         } else {
             LinkedListElement current = first;
             int i = 0;
             while (i < index - 1) {
-                current = current.getNext();
+                current = current.next;
                 i++;
             }
-            current.setNext(current.getNext().getNext());
+            current.next = current.next.next;
         }
         size--;
     }
@@ -69,10 +68,10 @@ public class LinkedList implements LinkedListADT {
         LinkedListElement current = first;
         int i = 0;
         while (i < index) {
-            current = current.getNext();
+            current = current.next;
             i++;
         }
-        return current.getValue();
+        return current.value;
     }
 
     public int size() {
@@ -96,18 +95,6 @@ public class LinkedList implements LinkedListADT {
         public LinkedListElement(int value, LinkedListElement next) {
             this.value = value;
             this.next = next;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setNext(LinkedListElement next) {
-            this.next = next;
-        }
-
-        public LinkedListElement getNext() {
-            return next;
         }
     }
 }
