@@ -1,18 +1,22 @@
 package org;
 
-import org.uade.structure.definition.QueueADT;
+import org.uade.structure.definition.PriorityQueueADT;
+import org.uade.util.PriorityQueueUtil;
 import org.uade.structure.implementation.*;
-import org.uade.util.QueueUtil;
 
-import org.uade.structure.definition.LinkedListADT;
-import org.uade.util.LinkedListUtil;
-
-import org.uade.structure.definition.StackADT;
-import org.uade.util.StackUtil;
 
 
 public class Main {
     public static void main(String[] args) {
+
+        PriorityQueueADT queue = new PriorityQueue();
+        System.out.println(queue.isEmpty());
+
+        queue.add(6, 3);
+        queue.add(19, 2);
+        queue.add(21, 1);
+        PriorityQueueUtil.print(queue);
+
 
         /*
         QueueADT queue = new StaticQueue(4);
@@ -48,8 +52,7 @@ public class Main {
         StackUtil.print(stack);
         */
 
-
-
+        /*
         LinkedListADT list = new StaticLinkedList();
 
         LinkedListUtil.print(list);
@@ -74,6 +77,7 @@ public class Main {
 
         System.out.println(list.size());
         LinkedListUtil.print(list);
+        */
         
     }
 }

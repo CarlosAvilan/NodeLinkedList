@@ -1,12 +1,8 @@
 package org.uade.structure.algorithms;
 
 import org.uade.structure.definition.QueueADT;
-import org.uade.structure.definition.StackADT;
-import org.uade.structure.implementation.Queue;
-import org.uade.structure.implementation.Stack;
 import org.uade.util.QueueUtil;
-
-import static org.uade.util.QueueUtil.copy;
+import org.uade.structure.implementation.Queue;
 
 public class RemoveElementRecursion {
 
