@@ -6,6 +6,7 @@ import org.uade.structure.exception.EmptyADTException;
 
 public class QueueUtil {
     public static QueueADT copy(QueueADT queue) {
+        //
         QueueADT newQueue = new Queue();
         QueueADT temp = new Queue();
 

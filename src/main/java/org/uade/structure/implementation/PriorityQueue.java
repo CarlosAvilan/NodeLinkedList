@@ -29,12 +29,12 @@ public class PriorityQueue implements PriorityQueueADT {
     @Override
     public void add(int value, int priority) {
         Node newNode = new Node(value, priority);
-        if (head == null || priority < head.priority) {
+        if (head == null || priority > head.priority) {
             newNode.next = head;
             head = newNode;
         } else {
             Node current = head;
-            while (current.next != null && current.next.priority <= priority) {
+            while (current.next != null && current.next.priority >= priority) {
                 current = current.next;
             }
             newNode.next = current.next;

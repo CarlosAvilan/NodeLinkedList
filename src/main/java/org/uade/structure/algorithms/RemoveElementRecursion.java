@@ -21,6 +21,10 @@ public class RemoveElementRecursion {
         QueueUtil.print(queue);
     }
 
+
+
+    //metodo publico que engloba (y luego ordena) y dentro privado de remover elemento
+
     public static void removeElementRecursion(QueueADT queue, int value) {
         if (queue.isEmpty()) {
             return;
@@ -35,5 +39,6 @@ public class RemoveElementRecursion {
             queue.add(currentValue);
         }
     }
+    //segunda recursion para voltearlo otra vez, ya sin el elemento
 }
 

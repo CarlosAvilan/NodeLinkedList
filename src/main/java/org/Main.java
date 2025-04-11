@@ -17,6 +17,9 @@ public class Main {
         queue.add(21, 1);
         PriorityQueueUtil.print(queue);
 
+        PriorityQueueADT copia = PriorityQueueUtil.copy(queue);
+        PriorityQueueUtil.print(copia);
+
 
         /*
         QueueADT queue = new StaticQueue(4);
