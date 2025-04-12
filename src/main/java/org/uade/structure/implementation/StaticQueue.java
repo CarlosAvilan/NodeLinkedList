@@ -11,6 +11,14 @@ public class StaticQueue implements QueueADT {
     private int size;
     private int maxSize;
 
+    public StaticQueue() {
+        this.values =  new int[100];
+        this.firstIndex = 0;
+        this.lastIndex = 0;
+        this.size = 0;
+        this.maxSize = 100;
+    }
+
     public StaticQueue(int maxSize) {
         this.values =  new int[maxSize];
         this.firstIndex = 0;

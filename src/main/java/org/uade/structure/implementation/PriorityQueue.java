@@ -22,8 +22,19 @@ public class PriorityQueue implements PriorityQueueADT {
     }
 
     @Override
-    public boolean isEmpty() {
-        return head == null;
+    public int getElement() {
+        if (isEmpty()) {
+            throw new EmptyADTException("La cola está vacía");
+        }
+        return head.value;
+    }
+
+    @Override
+    public int getPriority() {
+        if (isEmpty()) {
+            throw new EmptyADTException("La cola está vacía");
+        }
+        return head.priority;
     }
 
     @Override
@@ -42,28 +53,16 @@ public class PriorityQueue implements PriorityQueueADT {
         }
     }
 
-
-    @Override
-    public int getElement() {
-        if (isEmpty()) {
-            throw new EmptyADTException("La cola está vacía");
-        }
-        return head.value;
-    }
-
-    @Override
-    public int getPriority() {
-        if (isEmpty()) {
-            throw new EmptyADTException("La cola está vacía");
-        }
-        return head.priority;
-    }
-
     @Override
     public void remove() {
         if (isEmpty()) {
             throw new EmptyADTException("La cola está vacía");
         }
         head = head.next;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head == null;
     }
 }

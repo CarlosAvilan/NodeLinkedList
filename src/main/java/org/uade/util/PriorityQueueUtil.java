@@ -1,13 +1,14 @@
 package org.uade.util;
 
 import org.uade.structure.definition.PriorityQueueADT;
+import org.uade.structure.implementation.StaticPriorityQueue;
 import org.uade.structure.implementation.PriorityQueue;
 import org.uade.structure.exception.EmptyADTException;
 
 public class PriorityQueueUtil {
     public static PriorityQueueADT copy(PriorityQueueADT queue) {
-        PriorityQueueADT newQueue = new PriorityQueue();
-        PriorityQueueADT temp = new PriorityQueue();
+        PriorityQueueADT newQueue = getNewPriorityQueue(queue);
+        PriorityQueueADT temp = getNewPriorityQueue(queue);
 
         while (!queue.isEmpty()) {
             int value = queue.getElement();
@@ -29,14 +30,21 @@ public class PriorityQueueUtil {
 
     public static void print(PriorityQueueADT queue) {
         if (queue.isEmpty()) {
-            System.out.println("La cola está vacía");
-            return;
+            throw new EmptyADTException("La cola está vacía");
         }
 
         PriorityQueueADT myQueue = copy(queue);
         while (!myQueue.isEmpty()) {
             System.out.println(myQueue.getElement());
             myQueue.remove();
+        }
+    }
+
+    public static PriorityQueueADT getNewPriorityQueue(PriorityQueueADT queue) {
+        if (queue instanceof PriorityQueue) {
+            return new PriorityQueue();
+        } else {
+            return new StaticPriorityQueue();
         }
     }
 }
