@@ -12,10 +12,18 @@ public class Main {
         PriorityQueueADT queue = new PriorityQueue();
         System.out.println(queue.isEmpty());
 
-        queue.add(6, 3);
-        queue.add(19, 2);
-        queue.add(21, 1);
+        queue.add(10, 5);
+        queue.add(20, 7);
+        queue.add(30, 7);
+        queue.add(40, 7);
+        queue.add(15, 6);
+        queue.add(5, 4);
         PriorityQueueUtil.print(queue);
+
+        System.out.println("---");
+
+        queue.add(90, 8);
+        queue.add(100, 8);
 
         PriorityQueueADT copia = PriorityQueueUtil.copy(queue);
         PriorityQueueUtil.print(copia);
