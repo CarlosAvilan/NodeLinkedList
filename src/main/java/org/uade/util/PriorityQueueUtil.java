@@ -1,6 +1,7 @@
 package org.uade.util;
 
 import org.uade.structure.definition.PriorityQueueADT;
+import org.uade.structure.definition.QueueADT;
 import org.uade.structure.implementation.StaticPriorityQueue;
 import org.uade.structure.implementation.PriorityQueue;
 import org.uade.structure.exception.EmptyADTException;
@@ -46,5 +47,15 @@ public class PriorityQueueUtil {
         } else {
             return new StaticPriorityQueue();
         }
+    }
+
+    public static int count(PriorityQueueADT queue) {
+        PriorityQueueADT myQueue = copy(queue);
+        int count = 0;
+        while (!myQueue.isEmpty()) {
+            myQueue.remove();
+            count++;
+        }
+        return count;
     }
 }

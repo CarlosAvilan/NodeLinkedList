@@ -43,4 +43,14 @@ public class QueueUtil {
             return new StaticQueue();
         }
     }
+
+    public static int count(QueueADT queue) {
+        QueueADT myQueue = copy(queue);
+        int count = 0;
+        while (!myQueue.isEmpty()) {
+            myQueue.remove();
+            count++;
+        }
+        return count;
+    }
 }

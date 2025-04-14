@@ -9,6 +9,7 @@ public class TestTDAS {
 
     public static void main(String[] args) {
 
+        /*
         LinkedListADT lista = new StaticLinkedList();
         System.out.println(lista.isEmpty());
         lista.add(1);
@@ -35,6 +36,7 @@ public class TestTDAS {
         int valueTres = lista.get(3);
         System.out.println(valueTres);
         System.out.println("Fin");
+        */
 
 
 
@@ -60,7 +62,7 @@ public class TestTDAS {
         int value = pila.getElement();
         System.out.println(value);
         System.out.println("Fin");
-
+        */
 
 
         /*
@@ -84,15 +86,17 @@ public class TestTDAS {
         cola.remove();
         cola.add(8);
         QueueUtil.print(cola);
-
+        int contador = QueueUtil.count(cola);
+        System.out.println(contador);
         System.out.println("---");
 
         cola.add(9);
         QueueADT copiaCola = QueueUtil.copy(cola);
         QueueUtil.print(copiaCola);
         System.out.println("Fin");
+        */
 
-        /*
+
         PriorityQueueADT prioridad = new PriorityQueue();
         System.out.println(prioridad.isEmpty());
 
@@ -103,9 +107,13 @@ public class TestTDAS {
         prioridad.add(6, 7);
 
         PriorityQueueUtil.print(prioridad);
+        int contador = PriorityQueueUtil.count(prioridad);
+        System.out.println(contador);
         System.out.println("---");
 
         prioridad.remove();
+        int contadorDos = PriorityQueueUtil.count(prioridad);
+        System.out.println(contadorDos);
         PriorityQueueUtil.print(prioridad);
 
         System.out.println("---");
@@ -138,7 +146,6 @@ public class TestTDAS {
         System.out.println("Value: " + valueTres);
         PriorityQueueUtil.print(prioridad);
         System.out.println("Fin");
-        */
 
     }
 }
