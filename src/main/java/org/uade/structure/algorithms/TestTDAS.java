@@ -100,11 +100,13 @@ public class TestTDAS {
         PriorityQueueADT prioridad = new PriorityQueue();
         System.out.println(prioridad.isEmpty());
 
-        prioridad.add(10, 4);
-        prioridad.add(20, 5);
+        prioridad.add(10, 3);
+        prioridad.add(20, 2);
         prioridad.add(8, 3);
         prioridad.add(4, 2);
-        prioridad.add(6, 7);
+        prioridad.add(6, 1);
+        prioridad.add(7, 2);
+        prioridad.add(5, 3);
 
         PriorityQueueUtil.print(prioridad);
         int contador = PriorityQueueUtil.count(prioridad);
@@ -122,6 +124,22 @@ public class TestTDAS {
         PriorityQueueUtil.print(prioridad);
 
         System.out.println("---");
+        Atender.incrementarPrioridad(prioridad);
+        PriorityQueueUtil.print(prioridad);
+        prioridad.remove();
+        prioridad.remove();
+        prioridad.remove();
+        prioridad.remove();
+        prioridad.remove();
+        prioridad.remove();
+        System.out.println("Se hizo el cambio");
+        PriorityQueueUtil.print(prioridad);
+        System.out.println("---");
+        System.out.println(prioridad.getPriority());
+        prioridad.remove();
+        System.out.println("---");
+        System.out.println(prioridad.getPriority());
+        System.out.println("---");
         PriorityQueueADT copia = PriorityQueueUtil.copy(prioridad);
         PriorityQueueUtil.print(copia);
 
@@ -132,7 +150,6 @@ public class TestTDAS {
         System.out.println("Value: " + value);
         System.out.println("---");
 
-        prioridad.remove();
         int priorDos = prioridad.getPriority();
         int valueDos = prioridad.getElement();
         System.out.println("Prioridad: " + priorDos);
