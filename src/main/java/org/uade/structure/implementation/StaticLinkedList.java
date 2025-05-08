@@ -2,6 +2,7 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.LinkedListADT;
 import org.uade.structure.exception.EmptyADTException;
+import org.uade.structure.exception.InvalidIndexADTException;
 import org.uade.structure.exception.OverflowADTException;
 
 public class StaticLinkedList implements LinkedListADT {
@@ -10,6 +11,7 @@ public class StaticLinkedList implements LinkedListADT {
     private int nextSpace;
     private int size;
     private int maxSize;
+    private int free;
 
     public StaticLinkedList() {
         this.maxSize = 100;
@@ -17,16 +19,42 @@ public class StaticLinkedList implements LinkedListADT {
         this.first = -1;
         this.nextSpace = 0;
         this.size = 0;
+        this.free = -1;
+    }
+
+    public StaticLinkedList(int maxSize) {
+        if (maxSize <= 0) {
+            throw new InvalidIndexADTException("El valor debe ser mayor a cero");
+        }
+        this.maxSize = maxSize;
+        this.elements = new LinkedListElement[maxSize];
+        this.first = -1;
+        this.nextSpace = 0;
+        this.size = 0;
+        this.free = -1;
+    }
+
+    private int allocateNode() {
+        if (free != -1) {
+            int index = free;
+            free = elements[free].next;
+            return index;
+        }
+
+        if (nextSpace >= maxSize) {
+            throw new OverflowADTException("Se alcanzó la capacidad máxima");
+        }
+        return nextSpace++;
+    }
+
+    private void freeNode(int index) {
+        elements[index].next = free;
+        free = index;
     }
 
     @Override
     public void add(int value) {
-        if (nextSpace >= maxSize) {
-            throw new OverflowADTException("Se alcanzó la capacidad máxima");
-        }
-
-        int newIndex = nextSpace;
-        nextSpace++;
+        int newIndex = allocateNode();
         elements[newIndex] = new LinkedListElement(value, -1);
 
         if (isEmpty()) {
@@ -43,12 +71,12 @@ public class StaticLinkedList implements LinkedListADT {
 
     @Override
     public void insert(int index, int value) {
-        if (index < 0 || index > size || nextSpace >= maxSize) {
-            throw new OverflowADTException("Índice inválido o capacidad máxima alcanzada");
+        if (index < 0 || index > size) {
+            throw new InvalidIndexADTException("Índice inválido");
         }
 
-        int newIndex = nextSpace;
-        nextSpace++;
+        int newIndex = allocateNode();
+
         if (index == 0) {
             elements[newIndex] = new LinkedListElement(value, first);
             first = newIndex;
@@ -63,27 +91,33 @@ public class StaticLinkedList implements LinkedListADT {
         size++;
     }
 
+    @Override
     public void remove(int index) {
         if (index < 0 || index >= size) {
-            throw new EmptyADTException("Índice inválido");
+            throw new InvalidIndexADTException("Índice inválido");
         }
 
+        int removedIndex;
+
         if (index == 0) {
+            removedIndex = first;
             first = elements[first].next;
         } else {
             int current = first;
             for (int i = 0; i < index - 1; i++) {
                 current = elements[current].next;
             }
-            elements[current].next = elements[elements[current].next].next;
+            removedIndex = elements[current].next;
+            elements[current].next = elements[removedIndex].next;
         }
+        freeNode(removedIndex);
         size--;
     }
 
     @Override
     public int get(int index) {
         if (index < 0 || index >= size) {
-            throw new EmptyADTException("Índice inválido");
+            throw new InvalidIndexADTException("Índice inválido");
         }
 
         int current = first;
