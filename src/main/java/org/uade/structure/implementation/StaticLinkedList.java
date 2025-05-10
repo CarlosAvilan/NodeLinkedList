@@ -93,7 +93,7 @@ public class StaticLinkedList implements LinkedListADT {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index >= size) {
+        if (this.isEmpty() || index < 0 || index >= size) {
             throw new InvalidIndexADTException("Índice inválido");
         }
 

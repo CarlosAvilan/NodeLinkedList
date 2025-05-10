@@ -1,37 +1,26 @@
 package org.uade.structure.algorithms;
 
+import java.util.Random;
 import org.uade.structure.definition.LinkedListADT;
 import org.uade.structure.implementation.LinkedList;
 import org.uade.structure.implementation.StaticLinkedList;
+import org.uade.structure.implementation.StaticSet;
 import org.uade.util.LinkedListUtil;
 
 public class Pruebastda {
     public static void main(String[] args) {
-        LinkedListADT list = new StaticLinkedList();
+        StaticSet conjunto = new StaticSet();
 
-        list.add(8);
-        list.add(17);
-        list.add(1);
+        System.out.println(conjunto.isEmpty());
 
-        LinkedListUtil.print(list);
+        conjunto.add(9);
 
-        list.insert(1, 4);
-        LinkedListUtil.print(list);
-        System.out.println(list.size());
+        int numero1 = conjunto.choose();
+        System.out.println(numero1);
+        System.out.println(conjunto.isEmpty());
 
-        list.remove(2);
-        LinkedListUtil.print(list);
-
-        int number = list.get(1);
-        System.out.println(number);
-        System.out.println(list.size());
-
-        list.remove(2);
-        list.remove(1);
-        System.out.println(list.size());
-
-        list.remove(0);
-
-        System.out.println(list.isEmpty());
+        conjunto.add(9);
+        conjunto.remove(9);
+        System.out.println(conjunto.isEmpty());
     }
 }
