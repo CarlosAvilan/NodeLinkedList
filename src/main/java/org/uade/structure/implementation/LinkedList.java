@@ -2,6 +2,7 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.LinkedListADT;
 import org.uade.structure.exception.EmptyADTException;
+import org.uade.structure.exception.InvalidIndexADTException;
 
 public class LinkedList implements LinkedListADT {
     private LinkedListElement first;
@@ -27,7 +28,7 @@ public class LinkedList implements LinkedListADT {
 
     public void insert(int index, int value) {
         if (index < 0 || index > size) {
-            throw new EmptyADTException("Índice inválido");
+            throw new InvalidIndexADTException("Índice inválido");
         }
         if (index == 0) {
             first = new LinkedListElement(value, first);
@@ -45,7 +46,7 @@ public class LinkedList implements LinkedListADT {
 
     public void remove(int index) {
         if (index < 0 || index >= size) {
-            throw new EmptyADTException("Índice inválido");
+            throw new InvalidIndexADTException("Índice inválido");
         }
         if (index == 0) {
             first = first.next;
@@ -63,7 +64,7 @@ public class LinkedList implements LinkedListADT {
 
     public int get(int index) {
         if (index < 0 || index >= size) {
-            throw new EmptyADTException("Índice inválido");
+            throw new InvalidIndexADTException("Índice inválido");
         }
         LinkedListElement current = first;
         int i = 0;

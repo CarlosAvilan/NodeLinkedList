@@ -65,8 +65,7 @@ public class TestTDAS {
         */
 
 
-        /*
-        QueueADT cola = new StaticQueue();
+        QueueADT cola = new StaticQueue(15);
         System.out.println(cola.isEmpty());
 
         cola.add(18);
@@ -94,7 +93,9 @@ public class TestTDAS {
         QueueADT copiaCola = QueueUtil.copy(cola);
         QueueUtil.print(copiaCola);
         System.out.println("Fin");
-        */
+
+
+        /*
 
 
         PriorityQueueADT prioridad = new PriorityQueue();
@@ -163,6 +164,7 @@ public class TestTDAS {
         System.out.println("Value: " + valueTres);
         PriorityQueueUtil.print(prioridad);
         System.out.println("Fin");
+        */
 
     }
 }
