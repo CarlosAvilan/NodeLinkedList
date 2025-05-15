@@ -62,21 +62,28 @@ public class Set implements SetADT {
             return;
         }
 
+        Node nuevo = new Node(value);
+
         if (isEmpty()) {
-            first = new Node(value);
+            first = nuevo;
         } else {
-            Node current = first;
-            Node nuevo = new Node(value);
-            int random = rand.nextInt(size);
-            int count = 0;
-            while (count != (random-1)) {
-                current = current.next;
-                count++;
+            int random = rand.nextInt(size+1);
+
+            if (random == 0) {
+                nuevo.next = first;
+                first = nuevo;
+            } else {
+                Node current = first;
+                int count = 0;
+                while (count != (random-1)) {
+                    current = current.next;
+                    count++;
+                }
+                nuevo.next = current.next;
+                current.next = nuevo;
             }
-            nuevo.next = current.next;
-            current.next = nuevo;
-            size++;
         }
+        size++;
     }
 
     @Override
@@ -86,9 +93,10 @@ public class Set implements SetADT {
         } else if (!exist(element)) {
             System.out.println("El valor no existe");
             return;
-        } else if (size == 1) {
-            first = null;
+        } else if (first.value == element) {
+            first = first.next;
             size--;
+            return;
         } else {
             Node current = first;
             Node previous = null;

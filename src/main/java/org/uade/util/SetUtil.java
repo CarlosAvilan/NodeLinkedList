@@ -52,8 +52,6 @@ public class SetUtil {
         return count;
     }
 
-//Usar choose para elegir cada elemento del conjunto sea estático o dinámico (no importa si haces remove o no?)
-//Hacer lo mismo en count
     public static SetADT getNewSet(SetADT set) {
         if (set instanceof Set) {
             return new Set();
