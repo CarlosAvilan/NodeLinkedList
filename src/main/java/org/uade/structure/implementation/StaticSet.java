@@ -86,10 +86,6 @@ public class StaticSet implements SetADT {
 
     @Override
     public void remove(int element) {
-        if (isEmpty()) {
-            throw new EmptyADTException("El conjunto está vacío");
-        }
-
         if (!exist(element)) {
             return;
         }

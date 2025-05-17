@@ -2,17 +2,17 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.MultipleDictionaryADT;
 import org.uade.structure.definition.SetADT;
+import org.uade.structure.exception.EmptyADTException;
+import org.uade.structure.exception.InvalidIndexADTException;
 
 public class MultipleDictionary implements MultipleDictionaryADT {
 
     private SetADT keys;
     private DynamicValueNode first;
-    private DynamicValueNode last;
 
     public MultipleDictionary() {
         this.keys = new Set();
         this.first = null;
-        this.last = null;
     }
 
     private static class DynamicValueNode {
@@ -32,29 +32,51 @@ public class MultipleDictionary implements MultipleDictionaryADT {
         DynamicValueNode newNode = new DynamicValueNode(key, value);
         if (!keys.exist(key)) {
             keys.add(key);
-            last.next = newNode;
-            last = newNode;
-        } else {
+        }
+
+        if (isEmpty()) {
+            first = newNode;
+        }
+        else {
             DynamicValueNode current = first;
             while (current.next != null) {
-                if (current.key == key && current.value == value) {
-                    current.value = value;
-                    return;
-                }
                 current = current.next;
             }
-            //Llegué al último nodo (antes de null)
-            if (current.key == key && current.value == value) {
-                current.value = value;
-            }
-            last.next = newNode;
-            last = newNode;
+            current.next = newNode;
         }
     }
 
     @Override
     public void remove(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
 
+        if (!keys.exist(key)) {
+            return;
+        }
+
+        boolean found = false;
+
+        if (first.key == key) {
+            first = first.next;
+            found = true;
+        }
+        DynamicValueNode current = first;
+        while (current.next != null) {
+            if (current.next.key == key) {
+                current.next = current.next.next;
+                if (keys.exist(key) && !found) {
+                    found = true;
+                }
+            }
+            current = current.next;
+        }
+        if (found) {
+            keys.remove(key);
+        } else {
+            throw new InvalidIndexADTException("La clave existe, pero hay una inconsistencia y no se encontró el valor asociado");
+        }
     }
 
     @Override
@@ -85,11 +107,40 @@ public class MultipleDictionary implements MultipleDictionaryADT {
 
     @Override
     public boolean isEmpty() {
-        return first == null && last == null;
+        return first == null;
     }
 
     @Override
     public void remove(int key, int value) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
 
+        if (!keys.exist(key)) {
+            return;
+        }
+
+        boolean found = false;
+        int countValues = 0;
+//A ver como hago la cuenta para saber si la clave se quedó sin valores asociados
+        if (first.key == key && first.value == value) {
+            first = first.next;
+            found = true;
+        }
+        DynamicValueNode current = first;
+        while (current.next != null) {
+            if (current.next.key == key) {
+                current.next = current.next.next;
+                if (keys.exist(key) && !found) {
+                    found = true;
+                }
+            }
+            current = current.next;
+        }
+        if (found && countValues == 0) {
+            keys.remove(key);
+        } else {
+            throw new InvalidIndexADTException("La clave existe, pero hay una inconsistencia y no se encontró el valor asociado");
+        }
     }
 }

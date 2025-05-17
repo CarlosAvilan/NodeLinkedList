@@ -2,6 +2,7 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.MultipleDictionaryADT;
 import org.uade.structure.definition.SetADT;
+import org.uade.structure.exception.EmptyADTException;
 import org.uade.structure.exception.InvalidIndexADTException;
 
 public class StaticMultipleDictionary implements MultipleDictionaryADT {
@@ -46,14 +47,7 @@ public class StaticMultipleDictionary implements MultipleDictionaryADT {
         }
 
         if (keys.exist(key)) {
-            //Si la clave y el valor ya existen, piso el valor (si no se permiten duplicados en la misma clave)
-            for (int i = 0; i < maxSize; i++) {
-                if (values[i] != null && values[i].key == key && values[i].value == value) {
-                    values[i].value = value;
-                    return;
-                }
-            }
-            //Si la clave existe y el valor no, solo agrego el valor
+            //Si la clave existe, solo agrego el valor, no importa que ya exista y sea duplicado
             for (int i = 0; i < maxSize; i++) {
                 if (values[i] == null) {
                     values[i] = new StaticValueNode(key, value);
@@ -74,6 +68,10 @@ public class StaticMultipleDictionary implements MultipleDictionaryADT {
 
     @Override
     public void remove(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         if (!keys.exist(key)) {
             throw new InvalidIndexADTException("La clave no existe");
         } else {
@@ -89,6 +87,10 @@ public class StaticMultipleDictionary implements MultipleDictionaryADT {
 
     @Override
     public int[] get(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         if (!keys.exist(key)) {
             throw new InvalidIndexADTException("La clave no existe");
         } else {
@@ -109,6 +111,10 @@ public class StaticMultipleDictionary implements MultipleDictionaryADT {
 
     @Override
     public SetADT getKeys() {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         //Copia de las claves para evitar modificarlas una vez retornadas
         SetADT temp = new StaticSet();
         SetADT copia = new StaticSet();
@@ -135,6 +141,9 @@ public class StaticMultipleDictionary implements MultipleDictionaryADT {
 
     @Override
     public void remove(int key, int value) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
         if (!keys.exist(key)) {
             throw new InvalidIndexADTException("La clave no existe");
         } else {

@@ -2,6 +2,7 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.SetADT;
 import org.uade.structure.definition.SimpleDictionaryADT;
+import org.uade.structure.exception.EmptyADTException;
 import org.uade.structure.exception.InvalidIndexADTException;
 import org.uade.structure.implementation.Set;
 
@@ -9,12 +10,10 @@ public class SimpleDictionary implements SimpleDictionaryADT {
 
     private SetADT keys;
     private DynamicValueNode first;
-    private DynamicValueNode last;
 
     public SimpleDictionary() {
         this.keys = new Set();
         this.first = null;
-        this.last = null;
     }
 
     private static class DynamicValueNode {
@@ -31,48 +30,63 @@ public class SimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public void add(int key, int value) {
-        DynamicValueNode newNode = new DynamicValueNode(key, value);
         if (!keys.exist(key)) {
+            DynamicValueNode newNode = new DynamicValueNode(key, value);
             keys.add(key);
-            last.next = newNode;
-            last = newNode;
-        } else {
-            DynamicValueNode current = first;
-            while (current.next != null) {
-                if (current.key == key) {
-                    current.value = value;
-                    return;
+            if (isEmpty()) {
+                first = newNode;
+            } else {
+                DynamicValueNode current = first;
+                while (current.next != null) {
+                    current = current.next;
                 }
-                current = current.next;
+                current.next = newNode;
             }
-            //Llegué al último nodo (antes de null)
+            return;
+        }
+
+        DynamicValueNode current = first;
+        while (current != null) {
             if (current.key == key) {
                 current.value = value;
+                return;
             }
+            current = current.next;
         }
     }
 
     @Override
     public void remove(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         if (!keys.exist(key)) {
             return;
-        } else {
-            DynamicValueNode current = first;
-            if (current.key == key) {
-                first = current.next;
+        }
+
+        if (first.key == key) {
+            first = first.next;
+            keys.remove(key);
+            return;
+        }
+        DynamicValueNode current = first;
+        while (current.next != null) {
+            if (current.next.key == key) {
+                current.next = current.next.next;
+                keys.remove(key);
+                return;
             }
-            while (current.next != null) {
-                if (current.next.key == key) {
-                    current.next = current.next.next;
-                    keys.remove(key);
-                }
-                current = current.next;
-            }
+            current = current.next;
         }
     }
 
     @Override
     public int get(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         if (keys.exist(key)) {
             DynamicValueNode current = first;
             while (current != null) {
@@ -89,6 +103,10 @@ public class SimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public SetADT getKeys() {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
+
         //Copia de las claves para evitar modificarlas una vez retornadas
         SetADT temp = new Set();
         SetADT copia = new Set();
@@ -110,6 +128,6 @@ public class SimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public boolean isEmpty() {
-        return first == null && last == null;
+        return first == null;
     }
 }

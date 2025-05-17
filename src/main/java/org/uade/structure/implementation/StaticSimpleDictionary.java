@@ -1,6 +1,7 @@
 package org.uade.structure.implementation;
 
 import org.uade.structure.definition.SetADT;
+import org.uade.structure.exception.EmptyADTException;
 import org.uade.structure.exception.InvalidIndexADTException;
 import org.uade.structure.definition.SimpleDictionaryADT;
 
@@ -67,6 +68,9 @@ public class StaticSimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public void remove(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
         if (!keys.exist(key)) {
             throw new InvalidIndexADTException("La clave no existe");
         }
@@ -83,6 +87,9 @@ public class StaticSimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public int get(int key) {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacio");
+        }
         if (keys.exist(key)) {
             for (int i = 0; i < maxSize; i++) {
                 if (values[i] != null && values[i].key == key) {
@@ -97,6 +104,9 @@ public class StaticSimpleDictionary implements SimpleDictionaryADT {
 
     @Override
     public SetADT getKeys() {
+        if (isEmpty()) {
+            throw new EmptyADTException("El diccionario está vacío");
+        }
         //Copia de las claves para evitar modificarlas una vez retornadas
         SetADT temp = new StaticSet();
         SetADT copia = new StaticSet();

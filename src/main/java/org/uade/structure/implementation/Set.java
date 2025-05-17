@@ -87,9 +87,7 @@ public class Set implements SetADT {
 
     @Override
     public void remove(int element) {
-        if (isEmpty()) {
-            throw new EmptyADTException("El conjunto está vacío");
-        } else if (!exist(element)) {
+        if (!exist(element)) {
             return;
         } else if (first.value == element) {
             first = first.next;
