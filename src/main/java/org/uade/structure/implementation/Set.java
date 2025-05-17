@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Set implements SetADT {
 
-    private Set.Node first;
+    private Node first;
     private int size;
     private Random rand;
 

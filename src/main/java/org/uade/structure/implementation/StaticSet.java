@@ -14,7 +14,7 @@ public class StaticSet implements SetADT {
     private Random rand;
 
     public StaticSet() {
-        this.maxSize = 20;
+        this.maxSize = 100;
         this.values = new int[maxSize];
         this.size = 0;
         rand = new Random();
