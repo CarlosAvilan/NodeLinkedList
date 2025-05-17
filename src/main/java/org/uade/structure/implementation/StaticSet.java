@@ -69,7 +69,6 @@ public class StaticSet implements SetADT {
         }
 
         if (exist(value)) {
-            System.out.println("El valor ya existe dentro del conjunto");
             return;
         }
 
@@ -92,7 +91,6 @@ public class StaticSet implements SetADT {
         }
 
         if (!exist(element)) {
-            System.out.println("El valor no se encuentra en el conjunto");
             return;
         }
 

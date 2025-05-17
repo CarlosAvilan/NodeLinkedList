@@ -58,7 +58,6 @@ public class Set implements SetADT {
     @Override
     public void add(int value) {
         if (exist(value)) {
-            System.out.println("El valor ya existe dentro del conjunto");
             return;
         }
 
@@ -91,7 +90,6 @@ public class Set implements SetADT {
         if (isEmpty()) {
             throw new EmptyADTException("El conjunto está vacío");
         } else if (!exist(element)) {
-            System.out.println("El valor no existe");
             return;
         } else if (first.value == element) {
             first = first.next;

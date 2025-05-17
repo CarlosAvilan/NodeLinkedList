@@ -51,6 +51,7 @@ public class StaticSimpleDictionary implements SimpleDictionaryADT {
             throw new InvalidIndexADTException("La clave existe, pero hay una inconsistencia y no se encontró el nodo asociado");
         }
 
+        //Si hay que crear una nueva clave, reviso la capacidad primero
         if (size >= maxSize) {
             throw new InvalidIndexADTException("No se pueden agregar más claves");
         }
