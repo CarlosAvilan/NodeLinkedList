@@ -2,7 +2,6 @@ package org.uade.structure.implementation;
 
 import org.uade.structure.definition.SetADT;
 import org.uade.structure.exception.InvalidIndexADTException;
-import org.uade.structure.implementation.StaticSet;
 import org.uade.structure.definition.SimpleDictionaryADT;
 
 public class StaticSimpleDictionary implements SimpleDictionaryADT {
